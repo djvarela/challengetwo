@@ -12,8 +12,37 @@
         <img src="img/logo alura.svg" alt="Logo Alura">
     </header>
     <main>
-        <button id="btn-iniciar">Iniciar Juego</button>
-        <button id="btn-agregar">Agregar palabra</button>
+        <section class="areaJuego">
+                 <div class="ahorcado"> 
+                    
+                    <div id="resultado-contenedor">
+                        <canvas id="canvas"></canvas>
+                        
+                    <div class="mostrarLetras">
+                        <p id="resultado"></p>
+                    </div>
+                        <div class="lineas" id="lineas"></div>
+                    </div>
+                     <div class="ingresarPalabra">
+                         <input id="ingresarLetra"  maxlength="1" type="text"></div>
+                        <p id="ganaPierde"></p>
+                         <div class="botonesJuego">
+                     <button id="btn-nuevoJ">Nuevo Juego</button>
+                     <button id="btn-desistir">Desistir</button>
+                </div>
+            </div>
+        </section>
+        <div class="botonesInicial">
+            <button id="btn-iniciar">Iniciar Juego</button>
+            <button id="btn-agregar">Agregar palabra</button>
+        </div>
     </main>
+    <footer> <p id="fecha">2005</p>
+        <p> | Desarrollado por Diego J. Varela</p>
+        
+    </footer>
+
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/ahorcado.js"></script>
 </body>
 </html>
