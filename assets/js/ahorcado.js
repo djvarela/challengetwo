@@ -1,11 +1,11 @@
 
 let resultado= document.querySelector("#resultado");
 let botonNuevoJuego = document.querySelector("#btn-nuevoJ")
+const btnDesistir = document.getElementById("btn-desistir")
 let estado = document.getElementById("ganaPierde");
 let palabraPropuesta="";
 document.getElementById("ingresarLetra").focus()
 let palabraSecreta=["perrito", "gatito", "ocelote", "aguila"];
-let letraEquivocada= document.getElementById("letras-equivocadas")
 
 let errores = 0;
 let aciertos = 0;
@@ -49,10 +49,22 @@ iniciar()
 
 
 
+
+function letraError(letraIngresada){
+    const letraEquivocada= document.getElementById("letras-equivocadas")
+    let p =document.createElement("p")
+    letraEquivocada.appendChild(p);
+    p.innerHTML=letraIngresada;
+    
+
+}
+
+
 function verificar(){
     const spans = document.querySelectorAll(".lineas span")
     let letraIngresada= document.getElementById("ingresarLetra").value;
     let esta = false;
+   
 
     for(let i = 0; i < palabraPropuesta.length; i++){
         if(letraIngresada == palabraPropuesta[i]){
@@ -62,14 +74,15 @@ function verificar(){
            }
         }
 
-      if(esta == false){
+      if((esta == false) && (letraIngresada != palabraPropuesta)){
             errores++;
-           
+           letraIngresada = letraError(letraIngresada);
         }
         
       if(errores == 6){
         ganaPierde.innerHTML= "Usted Perdio, la palabra era " + palabraPropuesta;
-      }else if(aciertos == palabraPropuesta.length){
+       
+        }else if(aciertos == palabraPropuesta.length){
         ganaPierde.innerHTML= "Usted gano";
       }
     // console.log("la letra " + letraIngresada+ "en la plabara "+ palabraPropuesta + "existe? "+ esta)
@@ -78,5 +91,21 @@ function verificar(){
     dibujarPrincipal()
 }
 
+
+
+// function palabraIncorrecta(){
+//    if (letraIngresada === letraIngresada){
+//        letraEquivocada.innerHTML=letraIngresada
+
+//    }
+    
+// }
+
+
+
+// btnDesistir.addEventListener("keydown", algo)
+// function algo(){
+//     console.log("funca")
+// }
 
 botonNuevoJuego.onclick=verificar;

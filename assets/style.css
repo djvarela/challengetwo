@@ -155,7 +155,15 @@ span{
 
 } */
 
-.letras-equivocadas{
+#letras-equivocadas{
     display: flex;
     flex-direction: row;
+   
+}
+#letras-equivocadas p{
+    padding-right:  0.3em;
+    color: #dd2222;
+    font-weight: bold;
+    box-shadow: inset;
+    font-size: 1.5rem;
 }
