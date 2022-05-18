@@ -66,7 +66,7 @@ function verificar(){
         dibujarPrincipal()
          }
       if(errores == 6){
-        ganaPierde.innerHTML= "Usted Perdio";
+        ganaPierde.innerHTML= "Usted Perdio, la palabra era " + palabraPropuesta;
       }
       if(aciertos == palabraPropuesta.length){
         ganaPierde.innerHTML= "Usted gano";
