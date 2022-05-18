@@ -115,9 +115,10 @@ height: 2em;
 #canvas{
     display: flex;
     margin: auto;
-    width: 1200px;
-    height: 800px;
-    
+    max-width: 1200px;
+    max-height: 800px;
+    width: 90%;
+    height: auto;
 
 }
 
