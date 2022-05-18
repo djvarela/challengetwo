@@ -154,3 +154,8 @@ span{
   padding: 0.5em;
 
 } */
+
+.letras-equivocadas{
+    display: flex;
+    flex-direction: row;
+}
