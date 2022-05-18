@@ -13,32 +13,32 @@ function dibujarPrincipal() {
       ctx.arc(200,40,10,0,Math.PI*2,true); // Círculo externo
       ctx.stroke();
       
-    }if(errores == 2){
+    }else if(errores == 2){
     //cuerpo
 
         ctx.beginPath();
         ctx.moveTo(200,50)
         ctx.lineTo(200, 90)
         ctx.stroke();
-    }if(errores == 3){
+    }else if(errores == 3){
         //brazos der
         ctx.beginPath();
         ctx.moveTo(200,50)
         ctx.lineTo(180, 80)
         ctx.stroke();
-    }if(errores == 4){
+    }else if(errores == 4){
         //brazos izq
         ctx.beginPath();
         ctx.moveTo(200,50)
         ctx.lineTo(220, 80)
         ctx.stroke();
-    }if(errores == 5){
+    }else if(errores == 5){
             // patas izq
         ctx.beginPath();
         ctx.moveTo(200,90)
         ctx.lineTo(170, 120)
         ctx.stroke();
-    }if(errores == 6){
+    }else if(errores == 6){
         // patas izq
         ctx.beginPath();
         ctx.moveTo(200,90)

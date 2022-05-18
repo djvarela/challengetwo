@@ -5,17 +5,18 @@ let estado = document.getElementById("ganaPierde");
 let palabraPropuesta="";
 document.getElementById("ingresarLetra").focus()
 let palabraSecreta=["perrito", "gatito", "ocelote", "aguila"];
+let letraEquivocada= document.getElementById("letras-equivocadas")
 
 let errores = 0;
 let aciertos = 0;
 
-botonNuevoJuego.onclick=verificar;
+
 
 
 function iniciar(){
     errores = 0;
     aciertos = 0;
-    dibujarPrincipal()
+   
     var canvas = document.getElementById('canvas');
     if (canvas.getContext) {
       var ctx = canvas.getContext('2d');
@@ -53,27 +54,29 @@ function verificar(){
     let letraIngresada= document.getElementById("ingresarLetra").value;
     let esta = false;
 
-        for(let i = 0; i < palabraPropuesta.length; i++){
-            if(letraIngresada == palabraPropuesta[i]){
-            spans[i].innerHTML= letraIngresada
-            esta = true;
+    for(let i = 0; i < palabraPropuesta.length; i++){
+        if(letraIngresada == palabraPropuesta[i]){
+            spans[i].innerHTML= letraIngresada;
             aciertos++
-      
+            esta = true;
            }
         }
+
       if(esta == false){
-        errores++;
-        dibujarPrincipal()
-         }
+            errores++;
+           
+        }
+        
       if(errores == 6){
         ganaPierde.innerHTML= "Usted Perdio, la palabra era " + palabraPropuesta;
-      }
-      if(aciertos == palabraPropuesta.length){
+      }else if(aciertos == palabraPropuesta.length){
         ganaPierde.innerHTML= "Usted gano";
       }
     // console.log("la letra " + letraIngresada+ "en la plabara "+ palabraPropuesta + "existe? "+ esta)
     document.getElementById("ingresarLetra").value="";
-    document.getElementById("ingresarLetra").focus()
+    document.getElementById("ingresarLetra").focus();
+    dibujarPrincipal()
 }
 
-// dibujarPrincipal()
+
+botonNuevoJuego.onclick=verificar;
