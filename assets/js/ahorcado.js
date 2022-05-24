@@ -52,7 +52,8 @@ input.addEventListener("keydown", (event)=>{
         }
           
         if(errores == 6){
-          ganaPierde.innerHTML= "Usted Perdio, la palabra era " + palabraPropuesta;
+          ganaPierde.style.color= "#ff0000";
+          ganaPierde.innerHTML= "Fin del juego, la palabra era: " + palabraPropuesta;
           input.style.display="none";
           }else if(aciertos == palabraPropuesta.length){
           ganaPierde.innerHTML= "Usted gano";
