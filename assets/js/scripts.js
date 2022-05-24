@@ -62,7 +62,7 @@ function letraError(letraIngresada){
     let letraEquivocada= document.getElementById("letrasErradas")
     // let p =document.createElement("p")
   
-    letraErradas.push(letraIngresada);
+    letraErradas = letraIngresada + letraErradas;
   
     letraEquivocada.innerHTML=letraErradas;
 
