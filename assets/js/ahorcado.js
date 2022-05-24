@@ -1,14 +1,79 @@
 
-let resultado= document.querySelector("#resultado");
-let botonNuevoJuego = document.querySelector("#btn-nuevoJ")
 const btnDesistir = document.getElementById("btn-desistir")
-let estado = document.getElementById("ganaPierde");
-let palabraPropuesta="";
-document.getElementById("ingresarLetra").focus()
-let palabraSecreta=["perrito", "gatito", "ocelote", "aguila"];
+const botonNuevoJuego = document.querySelector("#btn-nuevoJ")
+const btnIniciar =document.getElementById("btn-iniciar");
+const btnAgregar = document.getElementById("btn-agregar")
 
+
+// let resultado= document.querySelector("#resultado");
+let estado = document.getElementById("ganaPierde");
+let areaJuego = document.querySelector(".areaJuego");
+const input = document.getElementById("ingresarLetra");
+
+let palabraSecreta=["perrito", "gatito", "ocelote", "aguila"];
+let palabraPropuesta="";
+let letraIngresada="";
 let errores = 0;
 let aciertos = 0;
+let almacenandoLetras=[];
+let almacenandoL="";
+let letraErradas= [];
+areaJuego.style.display ="none"; ///activar al final
+btnAgregar.style.display ="none";
+
+
+function jugar(){
+  input.focus()
+
+input.addEventListener("keydown", (event)=>{
+ 
+    let letraIngresada = event.key
+   if((letraIngresada < 'A') ||(letraIngresada > 'Z')) {
+
+    function verificar(letraIngresada){
+      const spans = document.querySelectorAll(".lineas span")
+      // let letraIngresada= document.getElementById("ingresarLetra").value;
+      let esta = false;
+      let caracteres = "";
+  
+      for(let i = 0; i < palabraPropuesta.length; i++){
+          if(letraIngresada == palabraPropuesta[i]){
+              spans[i].innerHTML= letraIngresada;
+              almacenandoLetras.push(letraIngresada); // esto lo esty usando para comparar letras y evitar que pongan dos veces las mismas letras
+              aciertos++;
+              esta = true;
+                            
+             }
+          }
+
+        if(esta == false){
+              errores++;
+             letraError(letraIngresada);
+        }
+          
+        if(errores == 6){
+          ganaPierde.innerHTML= "Usted Perdio, la palabra era " + palabraPropuesta;
+          input.style.display="none";
+          }else if(aciertos == palabraPropuesta.length){
+          ganaPierde.innerHTML= "Usted gano";
+          input.style.display="none";
+      
+        }
+         
+      // console.log("la letra " + letraIngresada+ "en la plabara "+ palabraPropuesta + "existe? "+ esta)
+      // document.getElementById("ingresarLetra").value="";
+      // document.getElementById("ingresarLetra").focus();
+      dibujarPrincipal(errores)
+      
+  }
+  verificar(letraIngresada)
+  
+  } 
+  });
+}
+
+
+    
 
 
 
@@ -16,7 +81,6 @@ let aciertos = 0;
 function iniciar(){
     errores = 0;
     aciertos = 0;
-   
     var canvas = document.getElementById('canvas');
     if (canvas.getContext) {
       var ctx = canvas.getContext('2d');
@@ -39,73 +103,76 @@ function iniciar(){
 
    for(let i=0; i< palabraPropuesta.length; i++){
         const span = document.createElement("span");
+        span.setAttribute('id','spanes');
         lineas.appendChild(span);
    }
 
-  
-}
-
-iniciar()
-
-
-
-
-function letraError(letraIngresada){
-    const letraEquivocada= document.getElementById("letras-equivocadas")
-    let p =document.createElement("p")
-    letraEquivocada.appendChild(p);
-    p.innerHTML=letraIngresada;
-    
-
+   jugar()
+   btnIniciar.style.display= "none"
+   
+   areaJuego.style.display =""
+   input.focus()
 }
 
 
-function verificar(){
-    const spans = document.querySelectorAll(".lineas span")
-    let letraIngresada= document.getElementById("ingresarLetra").value;
-    let esta = false;
+
+
+
+
+
+
+
+
+
+btnIniciar.onclick=iniciar;
+botonNuevoJuego.onclick=nJuego;
+
+btnDesistir.onclick=desistir;
+
+// function verificar(letraIngresada){
+//     const spans = document.querySelectorAll(".lineas span")
+//     // let letraIngresada= document.getElementById("ingresarLetra").value;
+//     let esta = false;
    
 
-    for(let i = 0; i < palabraPropuesta.length; i++){
-        if(letraIngresada == palabraPropuesta[i]){
-            spans[i].innerHTML= letraIngresada;
-            aciertos++
-            esta = true;
-           }
-        }
-
-      if((esta == false) && (letraIngresada != palabraPropuesta)){
-            errores++;
-           letraIngresada = letraError(letraIngresada);
-        }
+//     for(let i = 0; i < palabraPropuesta.length; i++){
+//         if(letraIngresada == palabraPropuesta[i]) {
+//             spans[i].innerHTML= letraIngresada;
+//             aciertos++
+//             esta = true;
+//            }
+//         }
         
-      if(errores == 6){
-        ganaPierde.innerHTML= "Usted Perdio, la palabra era " + palabraPropuesta;
+
+//       if(esta == false) {
+//             errores++;
+//            letraIngresada = letraError(letraIngresada);
+//         }
+        
+//       if(errores == 6){
+//         ganaPierde.innerHTML= "Usted Perdio, la palabra era " + palabraPropuesta;
        
-        }else if(aciertos == palabraPropuesta.length){
-        ganaPierde.innerHTML= "Usted gano";
-      }
-    // console.log("la letra " + letraIngresada+ "en la plabara "+ palabraPropuesta + "existe? "+ esta)
-    document.getElementById("ingresarLetra").value="";
-    document.getElementById("ingresarLetra").focus();
-    dibujarPrincipal()
-}
+//         }else if(aciertos == palabraPropuesta.length){
+//         ganaPierde.innerHTML= "Usted gano";
+//       }
+       
+//     // console.log("la letra " + letraIngresada+ "en la plabara "+ palabraPropuesta + "existe? "+ esta)
+//     // document.getElementById("ingresarLetra").value="";
+//     // document.getElementById("ingresarLetra").focus();
+//     dibujarPrincipal()
+// }
 
 
-
-// function palabraIncorrecta(){
-//    if (letraIngresada === letraIngresada){
-//        letraEquivocada.innerHTML=letraIngresada
-
-//    }
+// function letraRepetidas(){
+//   let spanes =  document.querySelectorAll(".lineas span");
+//   let contenidoSpan="";
+//   let sp="";    
+//     for(let i = 0; i < spanes.length; i++){
+//          sp;
+//       contenidoSpan = sp.innerHTML;
+//       }
+      
+      
     
 // }
 
-
-
-// btnDesistir.addEventListener("keydown", algo)
-// function algo(){
-//     console.log("funca")
-// }
-
-botonNuevoJuego.onclick=verificar;

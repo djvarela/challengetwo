@@ -4,52 +4,88 @@ function elegirPalabra(){
     return palabraElegida;
 }
 
-function dibujarPrincipal() {
-    if (canvas.getContext) {
-        var ctx = canvas.getContext('2d');
-    /// dibujar cara
-    if(errores == 1){
-      ctx.beginPath();
-      ctx.arc(200,40,10,0,Math.PI*2,true); // Círculo externo
-      ctx.stroke();
-      
-    }else if(errores == 2){
+function dibujarPrincipal(errores) {
+    var ctx = canvas.getContext('2d');
+   
+    switch(errores){
+    case 1:{
+         /// dibujar cara
+        ctx.beginPath();
+        ctx.arc(200,40,10,0,Math.PI*2,true); 
+        ctx.stroke();
+        break;}
+    case 2:{
     //cuerpo
-
         ctx.beginPath();
         ctx.moveTo(200,50)
         ctx.lineTo(200, 90)
         ctx.stroke();
-    }else if(errores == 3){
-        //brazos der
+    break;}
+    case 3:{
+    //brazos der
         ctx.beginPath();
         ctx.moveTo(200,50)
         ctx.lineTo(180, 80)
         ctx.stroke();
-    }else if(errores == 4){
-        //brazos izq
+    break;}
+    case 4:{
+    //brazos izq
         ctx.beginPath();
         ctx.moveTo(200,50)
         ctx.lineTo(220, 80)
         ctx.stroke();
-    }else if(errores == 5){
-            // patas izq
+    break;}
+    case 5:{
+    // patas izq
         ctx.beginPath();
         ctx.moveTo(200,90)
         ctx.lineTo(170, 120)
         ctx.stroke();
-    }else if(errores == 6){
-        // patas izq
+    break;}
+    case 6:{
+    // patas izq
         ctx.beginPath();
         ctx.moveTo(200,90)
         ctx.lineTo(230, 120)
         ctx.stroke();
+    break;}
+    default: return;
     }
-  
     
-    }
 }
   
 
 
 
+function letraError(letraIngresada){
+    
+    let letraEquivocada= document.getElementById("letrasErradas")
+    // let p =document.createElement("p")
+  
+    letraErradas.push(letraIngresada);
+  
+    letraEquivocada.innerHTML=letraErradas;
+
+
+}
+
+
+
+
+
+
+function desistir(){
+    location.reload();
+    areaJuego.style.display ="none";
+   
+  }
+
+
+function nJuego(){
+    esta = false
+    errores = 0;
+    aciertos = 0;
+    jugar()
+    elegirPalabra();
+    input.style.display=""
+}
