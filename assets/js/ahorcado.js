@@ -1,179 +1,129 @@
-
-const btnDesistir = document.getElementById("btn-desistir")
-const botonNuevoJuego = document.querySelector("#btn-nuevoJ")
-const btnIniciar =document.getElementById("btn-iniciar");
-const btnAgregar = document.getElementById("btn-agregar")
-
-
-// let resultado= document.querySelector("#resultado");
-let estado = document.getElementById("ganaPierde");
-let areaJuego = document.querySelector(".areaJuego");
-const input = document.getElementById("ingresarLetra");
-
-let palabraSecreta=["perrito", "gatito", "ocelote", "aguila"];
-let palabraPropuesta="";
-let letraIngresada="";
-let errores = 0;
-let aciertos = 0;
-let almacenandoLetras=[];
-let almacenandoL="";
+let palabraElegida;
+let errores = 0; //cuantas veces me equivoqué
+let aciertos = 0; //cuantas letras acerté
 let letraErradas= [];
-areaJuego.style.display ="none"; ///activar al final
-btnAgregar.style.display ="none";
+const palabras = [ "MANZANA", "BROCOLI","GIRASOL", "PUERRO", "PEPINO"];
+const btnJugar = selector("jugar");
+const btnNuevoJuego = document.querySelector("#nuevo-juego");
+const btnAgregarPalabra =document.querySelector("#agregar-palabra");
+const btnDesistir = document.getElementById("desistir");
+const btnGuadarPalabra=document.getElementById("btn-guardarycomenzar")
+const anularBtnDiv = document.querySelector(".btn");
+const cancelar = document.getElementById("cancelar");
+
+let btn_letras = document.querySelectorAll( "#teclado button" );
+let textAgregarPalabra = document.getElementById("agregarPalabra");
+const nuevaPalabra =document.querySelector(".agregar-palabra-conteiner")
+textAgregarPalabra.style.display="none";
+nuevaPalabra.style.display="none";
 
 
-function jugar(){
-  input.focus()
-
-input.addEventListener("keydown", (event)=>{
- 
-    let letraIngresada = event.key
-   if((letraIngresada < 'A') ||(letraIngresada > 'Z')) {
-
-    function verificar(letraIngresada){
-      const spans = document.querySelectorAll(".lineas span")
-      // let letraIngresada= document.getElementById("ingresarLetra").value;
-      let esta = false;
-      let caracteres = "";
-  
-      for(let i = 0; i < palabraPropuesta.length; i++){
-          if(letraIngresada == palabraPropuesta[i]){
-              spans[i].innerHTML= letraIngresada;
-              almacenandoLetras.push(letraIngresada); // esto lo esty usando para comparar letras y evitar que pongan dos veces las mismas letras
-              aciertos++;
-              esta = true;
-                            
-             }
-          }
-
-        if(esta == false){
-              errores++;
-             letraError(letraIngresada);
-        }
-          
-        if(errores == 6){
-          ganaPierde.style.color= "#ff0000";
-          ganaPierde.innerHTML= "Fin del juego, la palabra era: " + palabraPropuesta;
-          input.style.display="none";
-          }else if(aciertos == palabraPropuesta.length){
-          ganaPierde.innerHTML= "Usted gano";
-          input.style.display="none";
-      
-        }
-         
-      // console.log("la letra " + letraIngresada+ "en la plabara "+ palabraPropuesta + "existe? "+ esta)
-      // document.getElementById("ingresarLetra").value="";
-      // document.getElementById("ingresarLetra").focus();
-      dibujarPrincipal(errores)
-      
-  }
-  verificar(letraIngresada)
-  
-  } 
-  });
-}
-
-
+function iniciar(event){
+    btnJugar.style.display="none"
+    btnNuevoJuego.style.display="";
+    btnAgregarPalabra.style.display="none"
     
-
-
-
-
-function iniciar(){
+    anularBtnDiv.style.display= "none"
+    dibujar()
+    document.querySelector(".areaJuego").style.display="";
+    document.querySelector("#teclado").style.display=""; 
+    btnDesistir.style.display="";
+    // btn.disabled = true;
     errores = 0;
-    aciertos = 0;
-    var canvas = document.getElementById('canvas');
-    if (canvas.getContext) {
-      var ctx = canvas.getContext('2d');
-      ctx.beginPath();
-      ctx.fillStyle = "#fff"
-      ctx.moveTo(100,10); 
-      ctx.lineTo(100,400);
-      ctx.moveTo(100,11);
-      ctx.lineTo(201,11);
-      ctx.moveTo(200,10); 
-      ctx.lineTo(200,30);
-      ctx.stroke();
+    aciertos = 0; 
+    
+    const parrafo = selector( "palabra_a_adivinar" );
+    parrafo.innerHTML = ""; 
+    
+    // const cant_palabras = palabras.length;
+    // const cant_letras = palabraElegida.length;
+    const palabraAleatoria = selectorPalabra( 0, palabras.length );
+
+    palabraElegida = palabras[ palabraAleatoria ];
+    console.log( palabraElegida );
+
+    for( let i = 0; i < btn_letras.length ; i++ ){
+        btn_letras[ i ].disabled = false;
     }
-    let lineas = document.querySelector(".lineas");
 
-    lineas.innerHTML=""
-    const palabraAlAzar = elegirPalabra(0, palabraSecreta.length);
-    palabraPropuesta = palabraSecreta[palabraAlAzar];
-    console.log(palabraPropuesta)
+    for( let i = 0; i < palabraElegida.length; i++ ){
+        const span = document.createElement( "span" );
+        parrafo.appendChild( span );
+    }
 
-   for(let i=0; i< palabraPropuesta.length; i++){
-        const span = document.createElement("span");
-        span.setAttribute('id','spanes');
-        lineas.appendChild(span);
-   }
+}
 
-   jugar()
-   btnIniciar.style.display= "none"
-   
-   areaJuego.style.display =""
-   input.focus()
+/* click de adivinar letra */
+for( let i = 0; i < btn_letras.length ; i++ ){
+    btn_letras[ i ].addEventListener( "click",letras );
+}
+
+function letras(event){
+    const spans = document.querySelectorAll( "#palabra_a_adivinar span" );
+    const button = event.target; 
+    button.disabled = true;
+    
+    const letra = button.innerHTML.toUpperCase();
+    const palabra = palabraElegida.toUpperCase();
+
+    let acerto = false;
+
+    for( let i = 0; i < palabra.length;  i++ ){
+        if( letra == palabra[i] ){
+            spans[i].innerHTML = letra;
+            aciertos++;
+            acerto = true;
+        }
+    }
+    
+    if( acerto == false ){
+        errores++;      
+    }
+
+    if(errores == 6){
+        selector("resultado").style.color= "#ff0000";
+        selector("resultado").innerHTML ="Perdiste, la palabra era " + palabraElegida;
+        fin();
+    }else if( aciertos == palabraElegida.length ){
+        selector("resultado").innerHTML = "Ganaste, felicidades!!!";
+        fin( );
+    }
+    console.log( "la letra " + letra + " en la palabra " + palabra + " ¿existe?: " + acerto );
+    dibujarHorca(errores)
+
+    
+}
+
+
+fin();
+function fin( ){
+    for( let i = 0; i < btn_letras.length ; i++ ){
+        btn_letras[ i ].disabled = true;
+    }
+
+    btnJugar.disabled = false;
 }
 
 
 
 
 
-
-
-
-
-
-
-btnIniciar.onclick=iniciar;
-botonNuevoJuego.onclick=nJuego;
-
-btnDesistir.onclick=desistir;
-
-// function verificar(letraIngresada){
-//     const spans = document.querySelectorAll(".lineas span")
-//     // let letraIngresada= document.getElementById("ingresarLetra").value;
-//     let esta = false;
-   
-
-//     for(let i = 0; i < palabraPropuesta.length; i++){
-//         if(letraIngresada == palabraPropuesta[i]) {
-//             spans[i].innerHTML= letraIngresada;
-//             aciertos++
-//             esta = true;
-//            }
-//         }
-        
-
-//       if(esta == false) {
-//             errores++;
-//            letraIngresada = letraError(letraIngresada);
-//         }
-        
-//       if(errores == 6){
-//         ganaPierde.innerHTML= "Usted Perdio, la palabra era " + palabraPropuesta;
-       
-//         }else if(aciertos == palabraPropuesta.length){
-//         ganaPierde.innerHTML= "Usted gano";
-//       }
-       
-//     // console.log("la letra " + letraIngresada+ "en la plabara "+ palabraPropuesta + "existe? "+ esta)
-//     // document.getElementById("ingresarLetra").value="";
-//     // document.getElementById("ingresarLetra").focus();
-//     dibujarPrincipal()
-// }
-
-
-// function letraRepetidas(){
-//   let spanes =  document.querySelectorAll(".lineas span");
-//   let contenidoSpan="";
-//   let sp="";    
-//     for(let i = 0; i < spanes.length; i++){
-//          sp;
-//       contenidoSpan = sp.innerHTML;
-//       }
-      
-      
+function home(){
     
-// }
+    document.querySelector(".areaJuego").style.display="none";
+    document.querySelector("#teclado").style.display="none"; 
+    btnDesistir.style.display="none";
+    document.querySelector("#agregar-palabra").style.display="";
+    btnNuevoJuego.style.display="none";
+}
 
+
+home()
+
+
+
+btnJugar.onclick=iniciar;
+btnDesistir.onclick=desistir;
+btnAgregarPalabra.onclick=agregarPalabra;
+btnGuadarPalabra.onclick=guardarPalabraNueva;
+cancelar.onclick=desistir;  
