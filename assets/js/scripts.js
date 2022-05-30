@@ -115,7 +115,8 @@ function guardarPalabraNueva(){
     let palabraNueva= textAgregarPalabra.value;
     if(palabraNueva == ""){
         alert("debe ingresar una palabra")
-    } else{
+    }else{
+        palabraNueva = palabraNueva.toUpperCase();
         palabras.push(palabraNueva)
         
     }
