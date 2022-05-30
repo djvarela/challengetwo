@@ -83,7 +83,7 @@ function letras(event){
         selector("resultado").innerHTML = "Ganaste, felicidades!!!";
         fin( );
     }
-    console.log( "la letra " + letra + " en la palabra " + palabra + " ¿existe?: " + acerto );
+    
     dibujarHorca(errores)
 
     

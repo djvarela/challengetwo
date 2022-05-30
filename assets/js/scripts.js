@@ -117,7 +117,7 @@ function guardarPalabraNueva(){
         alert("debe ingresar una palabra")
     } else{
         palabras.push(palabraNueva)
-        console.log(palabras)
+        
     }
     nuevaPalabra.style.display="none"
     nuevojuego()
