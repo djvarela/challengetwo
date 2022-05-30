@@ -1,7 +1,6 @@
 body{
-    background-color: #ffffff;
+    background-color: #2b627c9a;
     box-sizing: border-box;
-    
 }
 header img{
     margin-left: 2%;
@@ -9,160 +8,199 @@ header img{
     color: red;
 }
 
+
+h1{
+    margin: 0;
+    color: white;
+}
+
 main{
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-top: 1em;
     width:auto;
     height: auto;
     padding: 1em;
     justify-content: center;
     align-items: center;
     align-content: center;
-}
-
-
-
-.botonesInicial{
-    display: flex;
-    flex-direction: column;
-    
-}
-button{
-    margin: auto;
-    margin-bottom: 1em;
-    border-radius: 1em;
-    padding: 1em;
-    background-color: rgb(0, 0, 0);
-    width: 20em;
-    height: 7em;
-    color: #ffffff;
-    cursor: pointer;
-}
-
-#btn-agregar,#btn-desistir{
-    height: 5em;
-    background-color: rgb(112, 112, 111);
-    color: rgb(255, 255, 255);
-    border: none;
-}
-
-#btn-desistir{
-    background-color: rgb(112, 112, 111);
-    height: 7em;
-}
-
-button:hover{
-    box-shadow: 1px 1px 1px 0 #021675;
-}
-
-footer{
-    display:flex;
-    width: auto;
-    height: auto;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(153, 153, 153);
-    padding: 0.5em;
     
 }
 
-footer p{
-    color: #ffffff;
-    text-align: center;
-    padding-left: 1em;
-}
-
-.areaJuego{
-    width: 80%;
-    height: auto;
-    min-height: 40vh;
-    margin: auto;
-    background-color: rgb(176, 176, 176);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-}
-
-.botonesJuego{
-    width: 100%;
-    height: auto;
-    justify-content: flex-end;
-    flex-direction: row;
-}
-
-
-.ingresarPalabra{
-width: 100%;
-margin-bottom: 3em;
-}
-
-#inputPalabra{
-letter-spacing: 1em;
-background-color: none;
-width: 100%;
-border: none;
-height: 2em;
-
-}
-
-#canvas{
+#ahorcado{
     display: flex;
     margin: auto;
     max-width: 1200px;
     max-height: 800px;
-    width: 90%;
+    width: 50%;
     height: auto;
 
 }
-
-
-.lineas{
-    display: flex;
-    justify-content: center;
+#palabra_a_adivinar{
+    height: 3em;
 }
+
+#palabra_a_adivinar span{
+    vertical-align: bottom;
+    font-size: 2em;
+    border-bottom: 2px solid black;
+    width: 30px;
+    text-align: center;
+    margin-right: 6px;
+    display: inline-flex; /* sin esto, por ser un elemento de línea, no tomaría el width */
+}
+
+
+
 span{
-    display: flex;
-    flex-direction: column-reverse;
-    margin-left: 0.1em;
-    width: 20px;
+    display: flex; 
     height: 1.5px;
     background-color: #021675;
-    padding: 1px;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    flex-direction: column-reverse;
+    
    
 }
+.areaJuego{
+    width: 60%;
+    height: auto;
+    min-height: 40vh;
+    /* margin-top: 1em; */
+    background-color: rgba(255, 255, 255, 0.438);
+    border: 0.3em solid rgb(187, 157, 157);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    padding: 1em;
+}
+.ahorcado{
+    width: 70%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+}
 
-#ganaPierde{
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: 2rem;
-} 
-/* #resultado{
-    font-size: 3em;
-    color: #021675;
-   
-    border: 1px solid orange;
-    width: 300px;
-    height: 50px;
-  margin: auto;
-  padding: 0.5em;
 
-} */
+#jugar, #desistir, #nuevo-juego, #agregar-palabra, #btn-guardarycomenzar, #cancelar {
+    margin: auto;
+    margin-bottom: 1em;
+    border-radius: 1em;
+    padding: 1em;
+    background-color: rgb(255, 255, 255);
+    width: 19em;
+    height: 6em;
+    color: #2c2b2b;
+    cursor: pointer;
+}
+#nuevo-juego{
+    margin-right: 1em;
+}
 
-#letras-equivocadas{
+#agregar-palabra{
+    width: 15em;
+    height: 5em;
+}
+
+
+button{
+    margin-right: 0.3em;
+    margin-bottom: 0.3em;
+    text-align: center;
+    background-color: #6a708d;
+    color: #ffffff;
+    width: 8em;
+    height:4em;
+    cursor: pointer;
+    border: none;
+    box-sizing: 1.5rem;
+}
+button:hover{
+    box-shadow: 0px 1px 1px 1px #6a708d;
+}
+
+#teclado button:disabled{
+    background-color: #3c488128;
+    box-shadow:none;
+    color: #000;
+}
+
+#teclado {
     display: flex;
     flex-direction: row;
-   
+    width: 70%;
+    text-align: center;    
+    justify-content: center;
+    flex-wrap: wrap;
 }
-#letras-equivocadas p{
+
+
+.btn, .btn-juego, .agregar-palabra-conteiner{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+}
+.btn-juego{
+margin-top: 1em;
+flex-direction: row;
+}
+.agregar-palabra-conteiner{
+    margin-top:-1em;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    /* align-content: center; */
+}
+
+.agregar-palabra-conteiner p{
+text-align: start;
+justify-content: flex-start;
+position: relative;
+display: flex;
+color: rgb(201, 39, 39);
+padding: 1em;
+text-shadow: 1px 1px 1px 1px #ffffff;
+}
+.agregar-palabra-conteiner p:before{
+    content: url(../img/alert.svg);
+    padding-right: 1em;
+;}
+
+
+#agregarPalabra{
+display: flex;
+    width: 100%;
+    margin-bottom: 1em;
+    justify-content: center;
+    margin: auto;
+    margin-top: 0;
+    height: 50vh;
+    background-color: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+    color: rgb(22, 20, 20);
+    font-size: 2rem;
+}
+
+#agregarPalabra::placeholder{
+    border: none;
+    color: #0e27a5;
+    font-size: 2rem;
+}
+#resultado{
+    color: rgb(6, 184, 44);
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+#palabra_a_adivinar{
+    margin-top: 2em;
+}
+
+#letrasErradas{
     padding-right:  0.3em;
     color: #dd2222;
     font-weight: bold;
