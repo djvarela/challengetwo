@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego del ahorcado</title>
-    <link rel="stylesheet" href="assets/js/">
-    <link rel="stylesheet" href="assets/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/reset.css" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Juego del Ahorcado</title>
 </head>
 <body>
     <header>
@@ -13,39 +13,64 @@
     </header>
     <main>
         <section class="areaJuego">
-            <div id="letras-equivocadas">
-                <p id="letrasErradas"></p>
-            </div>
-                 <div class="ahorcado"> 
-                    
-                    <div id="resultado-contenedor">
-                        <canvas id="canvas"></canvas>
-                        
-                    <div class="mostrarLetras">
-                        <p id="resultado"></p>
-                    </div>
-                        <div class="lineas" id="lineas"></div>
-                    </div>
-                     <div class="ingresarPalabra">
-                         <input id="ingresarLetra" required maxlength="1" type="text"></div>
-                        <p id="ganaPierde"></p>
-                         <div class="botonesJuego">
-                     <button id="btn-nuevoJ">Nuevo Juego</button>
-                     <button id="btn-desistir">Desistir</button>
-                </div>
-            </div>
+        
+        <div class="ahorcado">
+            <canvas id="canvas"></canvas>
+            <p id="palabra_a_adivinar"></p>
+        </div>
+        <p id="resultado"></p>
+            
         </section>
-        <div class="botonesInicial">
-            <button id="btn-iniciar">Iniciar Juego</button>
-            <button id="btn-agregar">Agregar palabra</button>
+        <div class="btn">
+            <button id="jugar">Inciar juego</button>
+            <button id="agregar-palabra">Agregar nueva palabra</button>
+        </div>
+        <div class="btn-juego">
+            <button id="nuevo-juego">Nuevo Juego</button>
+            <button id="desistir">Desistir</button>
+        </div>
+        <div class="agregar-palabra-conteiner">
+            
+            <textarea type="text" id="agregarPalabra" maxlength="8" placeholder="Ingrese una palabra"></textarea>
+            <p>Max. de 8 letras</p>
+            <div class="btn-np">
+            <button id="btn-guardarycomenzar">Guardar y empezar</button>
+            <button id="cancelar">Cancelar</button>
+        </div>
+        </div>
+        
+            <div id="teclado">
+                <button>A</button>
+                <button>B</button>
+                <button>C</button>
+                <button>D</button>
+                <button>E</button>
+                <button>F</button>
+                <button>G</button>
+                <button>H</button>
+                <button>I</button>
+                <button>J</button>
+                <button>K</button>
+                <button>L</button>
+                <button>M</button>
+                <button>N</button>
+                <button>Ñ</button>
+                <button>O</button>
+                <button>P</button>
+                <button>Q</button>
+                <button>R</button>
+                <button>S</button>
+                <button>T</button>
+                <button>U</button>
+                <button>V</button>
+                <button>W</button>
+                <button>X</button>
+                <button>Y</button>
+                <button>Z</button>
+            </div>
         </div>
     </main>
-    <footer> <p id="fecha">2005</p>
-        <p> | Desarrollado por Diego J. Varela</p>
-        
-    </footer>
-
-    <script src="assets/js/scripts.js"></script>
-    <script src="assets/js/ahorcado.js"></script>
+    <script src="funciones.js"></script>
+    <script src="juego.js"></script>
 </body>
 </html>
