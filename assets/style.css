@@ -48,10 +48,8 @@ main{
     width: 30px;
     text-align: center;
     margin-right: 6px;
-    display: inline-flex; /* sin esto, por ser un elemento de línea, no tomaría el width */
+    display: inline-flex;
 }
-
-
 
 span{
     display: flex; 
@@ -65,7 +63,6 @@ span{
     width: 60%;
     height: auto;
     min-height: 40vh;
-    /* margin-top: 1em; */
     background-color: rgba(255, 255, 255, 0.438);
     border: 0.3em solid rgb(187, 157, 157);
     display: flex;
@@ -82,7 +79,6 @@ span{
     display: flex;
     flex-direction: column;
 }
-
 
 #jugar, #desistir, #nuevo-juego, #agregar-palabra, #btn-guardarycomenzar, #cancelar {
     margin: auto;
@@ -103,7 +99,6 @@ span{
     width: 15em;
     height: 5em;
 }
-
 
 button{
     margin-right: 0.3em;
@@ -136,7 +131,6 @@ button:hover{
     flex-wrap: wrap;
 }
 
-
 .btn, .btn-juego, .agregar-palabra-conteiner{
     margin-top: 10%;
     display: flex;
@@ -150,8 +144,6 @@ flex-direction: row;
     margin-top:-1em;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
-    /* align-content: center; */
 }
 
 .agregar-palabra-conteiner p{
@@ -166,8 +158,7 @@ text-shadow: 1px 1px 1px 1px #ffffff;
 .agregar-palabra-conteiner p:before{
     content: url(../img/alert.svg);
     padding-right: 1em;
-;}
-
+}
 
 #agregarPalabra{
 display: flex;

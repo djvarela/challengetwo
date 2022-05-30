@@ -62,7 +62,6 @@ function dibujarHorca(errores) {
     
 }
 
-
 function dibujar(){
 
 
@@ -87,13 +86,9 @@ function dibujar(){
      
 }
 
-
-
 function desistir(){
     location.reload();
 }
-
-
 
 function nuevojuego(){
     var pincel = canvas.getContext("2d");
@@ -104,7 +99,6 @@ function nuevojuego(){
     acerto = false;
     letraErradas= [];
     iniciar();
-    
     dibujarHorca(errores)
     selector("resultado").innerHTML =""
 }

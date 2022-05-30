@@ -1,6 +1,6 @@
 let palabraElegida;
-let errores = 0; //cuantas veces me equivoqué
-let aciertos = 0; //cuantas letras acerté
+let errores = 0; 
+let aciertos = 0; 
 let letraErradas= [];
 const palabras = [ "MANZANA", "BROCOLI","GIRASOL", "PUERRO", "PEPINO"];
 const btnJugar = selector("jugar");
@@ -28,15 +28,11 @@ function iniciar(event){
     document.querySelector(".areaJuego").style.display="";
     document.querySelector("#teclado").style.display=""; 
     btnDesistir.style.display="";
-    // btn.disabled = true;
     errores = 0;
     aciertos = 0; 
     
     const parrafo = selector( "palabra_a_adivinar" );
     parrafo.innerHTML = ""; 
-    
-    // const cant_palabras = palabras.length;
-    // const cant_letras = palabraElegida.length;
     const palabraAleatoria = selectorPalabra( 0, palabras.length );
 
     palabraElegida = palabras[ palabraAleatoria ];
@@ -53,7 +49,6 @@ function iniciar(event){
 
 }
 
-/* click de adivinar letra */
 for( let i = 0; i < btn_letras.length ; i++ ){
     btn_letras[ i ].addEventListener( "click",letras );
 }
@@ -106,20 +101,14 @@ function fin( ){
 
 
 
-
-
+home()
 function home(){
-    
     document.querySelector(".areaJuego").style.display="none";
     document.querySelector("#teclado").style.display="none"; 
     btnDesistir.style.display="none";
     document.querySelector("#agregar-palabra").style.display="";
     btnNuevoJuego.style.display="none";
 }
-
-
-home()
-
 
 
 btnJugar.onclick=iniciar;
